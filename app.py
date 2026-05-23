@@ -162,7 +162,7 @@ process_phases = [
         {
             'label': '',
             'shape_type': 'circle',  # Mengubah total CPO menjadi Lingkaran
-            'tank_area': [1078, 128, 1268, 310]
+            'tank_area': [1106,225,1242,220]
         },
         {
             'label': '',
