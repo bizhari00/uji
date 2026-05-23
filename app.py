@@ -7,7 +7,7 @@ import time
 # 1. KONFIGURASI HALAMAN UTAMA (Wajib Paling Atas)
 # ==============================================================================
 st.set_page_config(
-    page_title="PFAD Produksi Biodiesel - Mode Live",
+    page_title="Pabrik PKS - Mode Live",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -84,136 +84,134 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Pembagian kolom rasio agar seimbang dan sejajar lurus
+# Pembagian kolom rasio agar seimbang dan sejajar lurus secara vertikal
 col_btn, col_title = st.columns([1.2, 2.8])
 
 with col_btn:
-    st.link_button("🏠 Kembali ke Menu Utama", "https://forio.com/app/univ_sumaterautara/research-ptpn", use_container_width=False)
+    # use_container_width diubah menjadi False agar lebarnya mengikuti batas max-width CSS di atas
+    st.link_button("🏠 ke Menu Simulasi", "https://forio.com/app/bustamiizhari/research-day", use_container_width=False)
 
 with col_title:
-    st.markdown('<p class="custom-title">PFAD Biodiesel</p>', unsafe_allow_html=True)
+    st.markdown('<p class="custom-title">Produksi PKS</p>', unsafe_allow_html=True)
 
 st.divider()
 
 # ==============================================================================
-# 4. MEMUAT BACKGROUND IMAGE
+# 4. MEMUAT BACKGROUND IMAGE PKS
 # ==============================================================================
 try:
-    img = Image.open("rivaldi.png")
+    img = Image.open("pks.png")
 except FileNotFoundError:
-    st.error("File 'rivaldi.png' tidak ditemukan. Pastikan file gambar ada di root repository GitHub Anda.")
+    st.error("File 'pks.png' tidak ditemukan. Pastikan file gambar ada di root repository GitHub Anda.")
     st.stop()
 
 # ==============================================================================
-# 5. KORDINAT AKURAT BERDASARKAN GRID ASLI (x0, y0, x1, y1)
+# 5. DATA KOORDINAT XY MURNI (Hasil Kalibrasi Pas)
+#    Format tank_area: [X_Mulai, Y_Mulai, X_Akhir, Y_Akhir]
 # ==============================================================================
-KOTAK_METANOL = [30,72,101,183]
-KOTAK_H2SO4   = [38,236,102,343]
-KOTAK_NAOH    = [361, 24, 430,133]
+process_phases = [
+    # --- FASE 1: PENERIMAAN TBS BARENGAN ---
+    [
+        {
+            'label': '',
+            'tank_area': [177, 121, 313, 210]
+        },
+        {
+            'label': '',
+            'tank_area': [192, 485, 332, 610]
+        }
+    ],
+    
+    # --- FASE 2: STOCK PKS BARENGAN ---
+    [
+        {
+            'label': '',
+            'tank_area': [326, 110, 470, 200]
+        },
+        {
+            'label': '',
+            'tank_area': [338, 483, 451, 584]
+        }
+    ],
+    
+    # --- FASE 3: PROSES MASUK KE TANGKI CPO BARENGAN ---
+    [
+        {
+            'label': '',
+            'tank_area': [620, 40, 749, 108]
+        },
+        {
+            'label': '',
+            'tank_area': [605, 405, 745, 490]
+        }
+    ],
+    
+    # --- FASE 4: PROSES MASUK KE STORAGE KERNEL BARENGAN ---
+    [
+        {
+            'label': '',
+            'tank_area': [625, 125, 763, 200]
+        },
+        {
+            'label': '',
+            'tank_area': [615, 495, 755, 583]
+        }
+    ],
 
-y_arrow = 550 
-
-flow_path = [
-    {
-        'step_id': 'feedstock_prep',
-        'x': 90, 'y': y_arrow, 'label': 'Persiapan Bahan Awal',
-        'multiple_areas': [
-            KOTAK_METANOL,
-            KOTAK_H2SO4,
-            [34,393,110,497]
-        ]
-    },
-    {
-        'step_id': 'reaktor1',
-        'x': 320, 'y': y_arrow, 'label': 'Reaktor 1 Aktif (Esterifikasi)', 
-        'tank_area': [295, 400, 360, 510]
-    },
-    {
-        'step_id': 'separator1',
-        'x': 420, 'y': y_arrow, 'label': 'Separator 1 Aktif', 
-        'tank_area': [430, 400, 500, 500]
-    },
-    {
-        'step_id': 'reaktor2',
-        'x': 630, 'y': y_arrow, 'label': 'Reaktor 2 Aktif (TransEsterifikasi)', 
-        'tank_area': [600, 400, 660, 500]
-    },
-    {
-        'step_id': 'separator2',
-        'x': 745, 'y': y_arrow, 'label': 'Separator 2 Aktif', 
-        'tank_area': [758,393,832,482]
-    },
-    {
-        'step_id': 'washdrum',
-        'x': 920, 'y': y_arrow, 'label': 'Wash Drum Aktif', 
-        'tank_area': [872,385,958,490]
-    },
-    {
-        'step_id': 'evaporator',
-        'x': 1025, 'y': y_arrow, 'label': 'Evaporator Aktif', 
-        'tank_area': [979,397,1054,500]
-    },
-    {
-        'step_id': 'biodiesel',
-        'x': 1200, 'y': y_arrow, 'label': 'Produk Biodiesel', 
-        'tank_area': [1150, 400, 1225,499]
-    }
+    # --- FASE 5: OUTPUT TRANSMISI TOTAL BARENGAN ---
+    [
+        {
+            'label': '',
+            'tank_area': [1078, 128, 1268, 310]
+        },
+        {
+            'label': '',
+            'tank_area': [1092, 448, 1270, 619]
+        }
+    ]
 ]
 
 # ==============================================================================
-# 6. LOGIKA ANIMASI JALUR PROSES DENGAN KOTAK PRESISI
+# 6. LOOPING RENDERING (MODE NORMAL - GRID OFF)
 # ==============================================================================
 placeholder = st.empty()
 render_count = 0
 
 while True:
-    for step in range(len(flow_path)):
-        current = flow_path[step]
+    for phase in process_phases:
         fig = px.imshow(img)
         
+        # --- MODE NORMAL: Menonaktifkan Grid dan Sumbu Koordinat ---
         fig.update_xaxes(visible=False, showgrid=False)
         fig.update_yaxes(visible=False, showgrid=False)
         
-        # 1. LOGIKA PEWARNAAN KOTAK HIJAU TRANSPARAN UTAMA
-        if 'multiple_areas' in current:
-            for area in current['multiple_areas']:
-                fig.add_shape(
-                    type="rect", x0=area[0], y0=area[1], x1=area[2], y1=area[3],
-                    fillcolor="rgba(0, 255, 0, 0.4)", line=dict(color="LimeGreen", width=2),
-                )
-        else:
-            area = current['tank_area']
+        for component in phase:
+            area = component['tank_area']
+            
+            # 1. Menggambar Kotak Berdasarkan Nilai XY Murni
             fig.add_shape(
-                type="rect", x0=area[0], y0=area[1], x1=area[2], y1=area[3],
-                fillcolor="rgba(0, 255, 0, 0.4)", line=dict(color="LimeGreen", width=2),
+                type="rect", 
+                x0=area[0], y0=area[1], x1=area[2], y1=area[3],
+                fillcolor="rgba(0, 255, 0, 0.4)",
+                line=dict(color="LimeGreen", width=3),
             )
             
-        # 2. LOGIKA KONDISIONAL TANGKI PROSES TAMBAHAN (ATAS)
-        if current['step_id'] == 'reaktor1':
-            for area in [KOTAK_METANOL, KOTAK_H2SO4]:
-                fig.add_shape(
-                    type="rect", x0=area[0], y0=area[1], x1=area[2], y1=area[3],
-                    fillcolor="rgba(0, 255, 0, 0.4)", line=dict(color="LimeGreen", width=2)
-                )
-        elif current['step_id'] == 'reaktor2':
-            # KUNCI PERUBAHAN: Loop ditambahkan agar KOTAK_NAOH dan KOTAK_METANOL aktif bersamaan
-            for area in [KOTAK_NAOH, KOTAK_METANOL]:
-                fig.add_shape(
-                    type="rect", x0=area[0], y0=area[1], x1=area[2], y1=area[3],
-                    fillcolor="rgba(0, 255, 0, 0.4)", line=dict(color="LimeGreen", width=2)
-                )
-
-        # 3. PENANDA PANAH SEGITIGA KUNING ANIMASI
-        fig.add_scatter(
-            x=[current['x']], y=[current['y']], mode="markers+text",
-            marker=dict(size=35, color="yellow", symbol="triangle-right", line=dict(width=3, color="orange")),
-            text=[current['label']], textposition="bottom center",
-            textfont=dict(size=21, color="darkred", family="Arial Black")
-        )
+            # 2. Perhitungan Otomatis Koordinat Label di Bawah Kotak
+            text_x = (area[0] + area[2]) / 2  # Titik tengah horizontal kotak
+            text_y = area[3] + 20             # Menaruh teks 20 piksel di bawah batas bawah kotak
+            
+            # 3. Menggambar Teks Label Hasil Kalkulasi Dinamis
+            fig.add_scatter(
+                x=[text_x], y=[text_y], 
+                mode="text",
+                text=[component['label']], 
+                textposition="bottom center",
+                textfont=dict(size=11, color="darkred", family="Arial Black")
+            )
         
         fig.update_layout(
             margin=dict(l=0, r=0, t=15, b=0), 
-            height=680,
+            height=500,
             autosize=True,
             showlegend=False
         )
@@ -222,9 +220,12 @@ while True:
             st.plotly_chart(
                 fig, 
                 use_container_width=True, 
-                config={'displayModeBar': False, 'responsive': True}, 
-                key=f"plotly_render_{render_count}"
+                config={
+                    'displayModeBar': False, 
+                    'responsive': True
+                }, 
+                key=f"pks_live_mode_{render_count}"
             )
         
         render_count += 1
-        time.sleep(1.8)
+        time.sleep(3.0)
