@@ -1,78 +1,120 @@
+Tentu, ini adalah perbaikan full script untuk aplikasi PFAD Biodiesel Anda.
+
+Bagian judul dan tombol navigasinya sudah dirombak total menggunakan konsep Balanced Design (bergaya dashboard modern, menggunakan gradasi warna premium, efek bayangan, berukuran pas/seimbang, serta sejajar secara vertikal) persis seperti pada aplikasi QCD sebelumnya.
+
+Berikut adalah kode lengkapnya yang bisa langsung Anda gunakan:
+
+Python
 import streamlit as st
 import plotly.express as px
 from PIL import Image
 import time
 
-# ==========================================
-# 1. KONFIGURASI HALAMAN STREAMLIT
-# ==========================================
+# ==============================================================================
+# 1. KONFIGURASI HALAMAN UTAMA (Wajib Paling Atas)
+# ==============================================================================
 st.set_page_config(
-    page_title="PFAD Produksi Biodiesel",
+    page_title="PFAD Produksi Biodiesel - Mode Live",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
-URL_PORTAL_FORIO = "https://forio.com/app/univ_sumaterautara/research-ptpn"
+# Pengaturan padding halaman utama agar aman di Forio 80%
 st.markdown(
     """
     <style>
     .block-container {
-        padding-top: 2rem;
-        padding-bottom: 0rem;
-    }
-    h1 {
-        text-align: center;
-        font-family: 'Arial', sans-serif;
-        margin-bottom: 20px;
-    }
-    .custom-tab-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #ffffff;
-        color: #31333F;
-        border: 1px solid rgba(49, 51, 63, 0.2);
-        padding: 0.4rem 1rem;
-        border-radius: 0.5rem;
-        font-weight: 500;
-        font-size: 1.6rem;
-        text-decoration: none;
-        cursor: pointer;
-        transition: background-color 0.16s ease-in-out;
-        width: 100%;
-        height: 42px;
-    }
-    .custom-tab-btn:hover {
-        border-color: #ff4b4b;
-        color: #ff4b4b;
-        background-color: rgba(255, 75, 75, 0.05);
+        padding-top: 2.0rem !important; 
+        padding-bottom: 1.5rem !important;
+        padding-left: 2.0rem !important;
+        padding-right: 2.0rem !important;
+        max-width: 100% !important;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-col_nav, _ = st.columns([2, 5])
-with col_nav:
-    st.markdown(
-        f'<a href="{URL_PORTAL_FORIO}" target="_blank" class="custom-tab-btn">🏠 Kembali ke Menu Utama</a>', 
-        unsafe_allow_html=True
-    )
+# ==============================================================================
+# 2. STRATEGI TURUNKAN LAYOUT 
+# ==============================================================================
+st.markdown("<br><br>", unsafe_allow_html=True)
 
-st.markdown("<h1>PFAD Biodiesel</h1>", unsafe_allow_html=True)
+# ==============================================================================
+# 3. NAVIGASI & JUDUL SEBARIS (Balanced Design Button & Title)
+# ==============================================================================
+st.markdown(
+    """
+    <style>
+    /* 1. Mengatur Ukuran & Corak Kotak Tombol Navigasi */
+    .stLinkButton > a {
+        background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%) !important; /* Gradasi biru premium */
+        color: #FFFFFF !important;
+        border: none !important;
+        border-radius: 8px !important; 
+        padding: 8px 20px !important; 
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25) !important;
+        transition: all 0.3s ease-in-out !important;
+        text-decoration: none !important;
+        
+        /* KUNCI KESEIMBANGAN: Lebar otomatis dan tidak melar penuh */
+        display: inline-flex !important;
+        width: auto !important;
+        max-width: 320px !important; 
+    }
 
-# ==========================================
-# 2. MEMUAT BACKGROUND IMAGE
-# ==========================================
+    /* 2. Menyesuaikan Ukuran Font di Dalam Tombol */
+    .stLinkButton > a p {
+        font-size: 16px !important; 
+        font-weight: bold !important;
+        color: #FFFFFF !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    /* 3. Efek Hover Interaktif */
+    .stLinkButton > a:hover {
+        background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%) !important;
+        box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4) !important;
+        transform: translateY(-1px) !important;
+    }
+
+    /* 4. Mengatur Teks Judul Diagram Agar Selaras Sebaris */
+    .custom-title {
+        font-size: 20px !important; 
+        font-weight: 500 !important;
+        color: #1E293B;
+        margin-top: 8px; 
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Pembagian kolom rasio agar seimbang dan sejajar lurus
+col_btn, col_title = st.columns([1.2, 2.8])
+
+with col_btn:
+    # use_container_width diatur False agar lebarnya dikunci aturan CSS di atas
+    st.link_button("🏠 Kembali ke Menu Utama", "https://forio.com/app/univ_sumaterautara/research-ptpn", use_container_width=False)
+
+with col_title:
+    st.markdown('<p class="custom-title">PFAD Biodiesel</p>', unsafe_allow_html=True)
+
+st.divider()
+
+# ==============================================================================
+# 4. MEMUAT BACKGROUND IMAGE
+# ==============================================================================
 try:
     img = Image.open("rivaldi.png")
 except FileNotFoundError:
     st.error("File 'rivaldi.png' tidak ditemukan. Pastikan file gambar ada di root repository GitHub Anda.")
     st.stop()
 
-# ==========================================
-# 3. KORDINAT AKURAT BERDASARKAN GRID ASLI (x0, y0, x1, y1)
-# ==========================================
+# ==============================================================================
+# 5. KORDINAT AKURAT BERDASARKAN GRID ASLI (x0, y0, x1, y1)
+# ==============================================================================
 KOTAK_METANOL = [40, 80, 100, 210]
 KOTAK_H2SO4   = [40, 240, 100, 370]
 KOTAK_NAOH    = [370, 40, 420, 140]
@@ -126,9 +168,9 @@ flow_path = [
     }
 ]
 
-# ==========================================
-# 4. LOGIKA ANIMASI JALUR PROSES DENGAN KOTAK PRESISI
-# ==========================================
+# ==============================================================================
+# 6. LOGIKA ANIMASI JALUR PROSES DENGAN KOTAK PRESISI
+# ==============================================================================
 placeholder = st.empty()
 render_count = 0
 
@@ -137,8 +179,8 @@ while True:
         current = flow_path[step]
         fig = px.imshow(img)
         
-        fig.update_xaxes(visible=False)
-        fig.update_yaxes(visible=False)
+        fig.update_xaxes(visible=False, showgrid=False)
+        fig.update_yaxes(visible=False, showgrid=False)
         
         # 1. LOGIKA PEWARNAAN KOTAK HIJAU TRANSPARAN
         if 'multiple_areas' in current:
@@ -175,10 +217,20 @@ while True:
             textfont=dict(size=21, color="darkred", family="Arial Black")
         )
         
-        fig.update_layout(margin=dict(l=5, r=5, t=5, b=5), height=680)
+        fig.update_layout(
+            margin=dict(l=0, r=0, t=15, b=0), 
+            height=680,
+            autosize=True,
+            showlegend=False
+        )
         
         with placeholder.container():
-            st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False}, key=f"plotly_render_{render_count}")
+            st.plotly_chart(
+                fig, 
+                use_container_width=True, 
+                config={'displayModeBar': False, 'responsive': True}, 
+                key=f"plotly_render_{render_count}"
+            )
         
         render_count += 1
         time.sleep(1.8)
