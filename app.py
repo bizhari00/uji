@@ -162,12 +162,12 @@ process_phases = [
         {
             'label': '',
             'shape_type': 'circle',  # Mengubah total CPO menjadi Lingkaran
-            'tank_area': [1106,225,1242,220]
+            'tank_area': [1106,157,1245,286]
         },
         {
             'label': '',
             'shape_type': 'circle',  # Mengubah total Palm Kernel menjadi Lingkaran
-            'tank_area': [1092, 448, 1270, 619]
+            'tank_area': [1149,463,1248,592]
         }
     ]
 ]
