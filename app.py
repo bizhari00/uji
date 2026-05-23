@@ -1,10 +1,4 @@
-Tentu, ini adalah perbaikan full script untuk aplikasi PFAD Biodiesel Anda.
 
-Bagian judul dan tombol navigasinya sudah dirombak total menggunakan konsep Balanced Design (bergaya dashboard modern, menggunakan gradasi warna premium, efek bayangan, berukuran pas/seimbang, serta sejajar secara vertikal) persis seperti pada aplikasi QCD sebelumnya.
-
-Berikut adalah kode lengkapnya yang bisa langsung Anda gunakan:
-
-Python
 import streamlit as st
 import plotly.express as px
 from PIL import Image
