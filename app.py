@@ -1,3 +1,8 @@
+Berikut adalah pembaruan kode lengkap (full script) Anda.
+
+Berdasarkan struktur data koordinat yang Anda kirimkan, komponen box_impor_bbm (GAP Ketahanan Energi?) dan box_impor_crude (GAP Ketahanan Pangan?) berada di Kelompok 8 (Fase 8). Logika rendering pada Bagian 6 telah disesuaikan agar mendeteksi kata "GAP" pada label secara otomatis, lalu menggambar geometri penanda khusus berbentuk Belah Ketupat (Diamond) menggunakan parameter type="path" Plotly.
+
+Python
 import streamlit as st
 import plotly.express as px
 from PIL import Image
@@ -116,17 +121,17 @@ box_rbdpo            = {'label': 'Refinery CPO', 'shape_type': 'rect', 'tank_are
 box_olein            = {'label': 'RBDPO', 'shape_type': 'rect', 'tank_area': [1047, 555, 1137, 601]}
 box_biosolar         = {'label': 'Produk Samping PFAD', 'shape_type': 'rect', 'tank_area': [870, 409, 1002, 464]}
 
-# KELOMPOK 6 (Fase 6 - Tambahan 2 Kotak Lagi)
-box_prod_biodiesel   = {'label': 'Produksi Biodiesel', 'shape_type': 'rect', 'tank_area': [1124,390,1208,451]}  # Silakan kalibrasi koordinat pasnya
-box_gap_energi       = {'label': 'Olein (Minyak Goreng)', 'shape_type': 'rect', 'tank_area': [1264,493,1396,553]} # Silakan kalibrasi koordinat pasnya
+# KELOMPOK 6 (Fase 6)
+box_prod_biodiesel   = {'label': 'Produksi Biodiesel', 'shape_type': 'rect', 'tank_area': [1124, 390, 1208, 451]}
+box_gap_energi       = {'label': 'Olein (Minyak Goreng)', 'shape_type': 'rect', 'tank_area': [1264, 493, 1396, 553]}
 
-# KELOMPOK 7 (Fase 7 - Tambahan 2 Kotak Lagi)
-box_avail_migor      = {'label': 'Ketersediaan BioSolar Nasional', 'shape_type': 'rect', 'tank_area': [1228,251,1396,310]} # Silakan kalibrasi koordinat pasnya
-box_gap_pangan       = {'label': 'Ketersediaan Minyak Goreng Nasional ', 'shape_type': 'rect', 'tank_area': [1485,492,1610,579]}  # Silakan kalibrasi koordinat pasnya
+# KELOMPOK 7 (Fase 7)
+box_avail_migor      = {'label': 'Ketersediaan BioSolar Nasional', 'shape_type': 'rect', 'tank_area': [1228, 251, 1396, 310]}
+box_gap_pangan       = {'label': 'Ketersediaan Minyak Goreng Nasional ', 'shape_type': 'rect', 'tank_area': [1485, 492, 1610, 579]}
 
-# KELOMPOK 8 (Fase 8 - Tambahan 2 Kotak Akhir)
-box_impor_bbm        = {'label': 'GAP Ketahanan Energi?', 'shape_type': 'rect', 'tank_area': [1381,76,1510,193]}       # Silakan kalibrasi koordinat pasnya
-box_impor_crude      = {'label': 'GAP Ketahanan Pangan?', 'shape_type': 'rect', 'tank_area': [1569,317,1686,424]} # Silakan kalibrasi koordinat pasnya
+# KELOMPOK 8 (Fase 8 - Kotak Indikator GAP Deteksi Otomatis Menjadi Belah Ketupat)
+box_impor_bbm        = {'label': 'GAP Ketahanan Energi?', 'shape_type': 'rect', 'tank_area': [1381, 76, 1510, 193]}
+box_impor_crude      = {'label': 'GAP Ketahanan Pangan?', 'shape_type': 'rect', 'tank_area': [1569, 317, 1686, 424]}
 
 # ==============================================================================
 # 5B. STRUKTUR FASE ANIMASI AKUMULATIF (Kotak Sebelumnya Tetap Bertahan)
@@ -142,25 +147,25 @@ process_phases = [
     [box_kapasitas_kilang, box_lahan_sawit_tm, box_produksi_bbm, box_pks, 
      box_palm_kernel, box_hasil_cpo, box_kebutuhan_bbm],
     
-    # FASE 4: + 2 Kotak Lagi (Subsidi Solar & RBDPO)
+    # FASE 4: + 2 Kotak Lagi
     [box_kapasitas_kilang, box_lahan_sawit_tm, box_produksi_bbm, box_pks, 
      box_palm_kernel, box_hasil_cpo, box_kebutuhan_bbm, 
      box_refinery_cpo, box_rbdpo],
      
-    # FASE 5: + 2 Kotak Lagi (Olein & BioSolar)
+    # FASE 5: + 2 Kotak Lagi
     [box_kapasitas_kilang, box_lahan_sawit_tm, box_produksi_bbm, box_pks, 
      box_palm_kernel, box_hasil_cpo, box_kebutuhan_bbm, 
      box_refinery_cpo, box_rbdpo, 
      box_olein, box_biosolar],
 
-    # FASE 6: + 2 Kotak Lagi (Produksi Biodiesel & GAP Energi)
+    # FASE 6: + 2 Kotak Lagi
     [box_kapasitas_kilang, box_lahan_sawit_tm, box_produksi_bbm, box_pks, 
      box_palm_kernel, box_hasil_cpo, box_kebutuhan_bbm, 
      box_refinery_cpo, box_rbdpo, 
      box_olein, box_biosolar,
      box_prod_biodiesel, box_gap_energi],
 
-    # FASE 7: + 2 Kotak Lagi (Ketersediaan Migor & GAP Pangan)
+    # FASE 7: + 2 Kotak Lagi
     [box_kapasitas_kilang, box_lahan_sawit_tm, box_produksi_bbm, box_pks, 
      box_palm_kernel, box_hasil_cpo, box_kebutuhan_bbm, 
      box_refinery_cpo, box_rbdpo, 
@@ -168,7 +173,7 @@ process_phases = [
      box_prod_biodiesel, box_gap_energi,
      box_avail_migor, box_gap_pangan],
 
-    # FASE 8: + 2 Kotak Akhir (Impor BBM & Impor Crude)
+    # FASE 8: + 2 Kotak Akhir (GAP Ketahanan Energi & GAP Ketahanan Pangan)
     [box_kapasitas_kilang, box_lahan_sawit_tm, box_produksi_bbm, box_pks, 
      box_palm_kernel, box_hasil_cpo, box_kebutuhan_bbm, 
      box_refinery_cpo, box_rbdpo, 
@@ -179,7 +184,7 @@ process_phases = [
 ]
 
 # ==============================================================================
-# 6. LOOPING RENDERING (MODE NORMAL - GRID OFF)
+# 6. LOOPING RENDERING (DENGAN GEOMETRI BELAH KETUPAT)
 # ==============================================================================
 placeholder = st.empty()
 render_count = 0
@@ -194,21 +199,34 @@ while True:
         
         for component in phase:
             area = component['tank_area']
-            shape = component.get('shape_type', 'rect')
             
-            # 1. Menggambar Bentuk Penanda Merah (Transparan)
-            fig.add_shape(
-                type=shape, 
-                x0=area[0], y0=area[1], x1=area[2], y1=area[3],
-                fillcolor="rgba(255, 0, 0, 0.35)",
-                line=dict(color="Red", width=3),
-            )
+            # CEK OTOMATIS: Jika label memiliki kata "GAP", render menjadi bentuk Belah Ketupat
+            if "GAP" in component['label']:
+                x_mid = (area[0] + area[2]) / 2
+                y_mid = (area[1] + area[3]) / 2
+                
+                fig.add_shape(
+                    type="path",
+                    # Alur Garis: Atas -> Kanan -> Bawah -> Kiri -> Selesai (Z)
+                    path=f"M {x_mid},{area[1]} L {area[2]},{y_mid} L {x_mid},{area[3]} L {area[0]},{y_mid} Z",
+                    fillcolor="rgba(255, 0, 0, 0.35)",
+                    line=dict(color="Red", width=3),
+                )
+            else:
+                # Bentuk Kotak Standar untuk komponen non-GAP
+                shape = component.get('shape_type', 'rect')
+                fig.add_shape(
+                    type=shape, 
+                    x0=area[0], y0=area[1], x1=area[2], y1=area[3],
+                    fillcolor="rgba(255, 0, 0, 0.35)",
+                    line=dict(color="Red", width=3),
+                )
             
             # 2. Koordinat Label Teks Dinamis
             text_x = (area[0] + area[2]) / 2
             text_y = area[3] + 25             
             
-            # 3. Render Teks Label di Bawah Kotak
+            # 3. Render Teks Label di Bawah Elemen Penanda
             fig.add_scatter(
                 x=[text_x], y=[text_y], 
                 mode="text",
@@ -236,4 +254,4 @@ while True:
             )
         
         render_count += 1
-        time.sleep(3.5)  # Jeda waktu transisi antar fase animasi
+        time.sleep(3.5)  # Jeda waktu transisi animasi antar fase
