@@ -1,3 +1,8 @@
+Berikut adalah full script lengkap yang sudah diintegrasikan dengan alur 3 fase animasi baru sesuai permintaan Anda.
+
+Warna indikator animasi diubah menjadi warna merah semi-transparan (rgba(255, 0, 0, 0.4)) dengan garis tepi merah tegas agar kontras dan terlihat jelas saat menimpa diagram alir. Silakan sesuaikan nilai koordinat tank_area [X_Mulai, Y_Mulai, X_Akhir, Y_Akhir] jika dirasa posisi kotaknya kurang bergeser tepat di atas teks gambar cldnew.png.
+
+Python
 import streamlit as st
 import plotly.express as px
 from PIL import Image
@@ -91,83 +96,68 @@ with col_btn:
     st.link_button("🏠 ke Menu Utama", "https://forio.com/app/univ_sumaterautara/research-ptpn", use_container_width=False)
 
 with col_title:
-    st.markdown('<p class="custom-title">CLD</p>', unsafe_allow_html=True)
+    st.markdown('<p class="custom-title">Model Analisis Ketahanan Energi & Pangan (Live Animasi)</p>', unsafe_allow_html=True)
 
 st.divider()
 
 # ==============================================================================
-# 4. MEMUAT BACKGROUND IMAGE PKS
+# 4. MEMUAT BACKGROUND IMAGE CLD
 # ==============================================================================
 try:
     img = Image.open("cldnew.png")
 except FileNotFoundError:
-    st.error("File 'pks.png' tidak ditemukan. Pastikan file gambar ada di root repository GitHub Anda.")
+    st.error("File 'cldnew.png' tidak ditemukan. Pastikan file gambar ada di root repository GitHub Anda.")
     st.stop()
 
 # ==============================================================================
-# 5. DATA KOORDINAT XY MURNI (Hasil Kalibrasi Pas)
+# 5. DATA KOORDINAT XY MURNI (Sesuai Permintaan Alur Baru)
 #    Format tank_area: [X_Mulai, Y_Mulai, X_Akhir, Y_Akhir]
 # ==============================================================================
 process_phases = [
-    # --- FASE 1: PENERIMAAN TBS BARENGAN ---
+    # --- FASE 1: GERAKAN ANIMASI 2 KOTAK BARENGAN ---
     [
         {
-            'label': '',
-            'tank_area': [364,131,463,203]
+            'label': 'Kapasitas Kilang',
+            'shape_type': 'rect',
+            'tank_area': [240, 120, 310, 180]  # Silakan kalibrasi koordinat pasnya
         },
         {
-            'label': '',
-            'tank_area': [118,435,235,512]
+            'label': 'Lahan Sawit Produktif TM',
+            'shape_type': 'rect',
+            'tank_area': [80, 640, 160, 720]   # Silakan kalibrasi koordinat pasnya
         }
     ],
     
-    # --- FASE 2: STOCK PKS BARENGAN ---
+    # --- FASE 2: KEMUDIAN 2 KOTAK BARU TERBENTUK BARENGAN ---
     [
         {
-            'label': '',
-            'tank_area': [615,71,724,151]
+            'label': 'Produksi BBM',
+            'shape_type': 'rect',
+            'tank_area': [370, 110, 440, 170]  # Silakan kalibrasi koordinat pasnya
         },
         {
-            'label': '',
-            'tank_area': [395,542,511,628]
+            'label': 'Pabrik Kelapa Sawit PKS',
+            'shape_type': 'rect',
+            'tank_area': [240, 760, 310, 830]  # Silakan kalibrasi koordinat pasnya
         }
     ],
     
-    # --- FASE 3: PROSES MASUK KE TANGKI CPO BARENGAN ---
+    # --- FASE 3: KEMUDIAN 3 KOTAK BARU TERBENTUK BARENGAN ---
     [
         {
-            'label': '',
-            'tank_area': [620, 40, 749, 108]
+            'label': 'Palm Kernel',
+            'shape_type': 'rect',
+            'tank_area': [250, 610, 320, 670]  # Silakan kalibrasi koordinat pasnya
         },
         {
-            'label': '',
-            'tank_area': [605, 405, 745, 490]
-        }
-    ],
-    
-    # --- FASE 4: PROSES MASUK KE STORAGE KERNEL BARENGAN ---
-    [
-        {
-            'label': '',
-            'tank_area': [625, 125, 763, 200]
+            'label': 'Hasil CPO',
+            'shape_type': 'rect',
+            'tank_area': [490, 750, 560, 810]  # Silakan kalibrasi koordinat pasnya
         },
         {
-            'label': '',
-            'tank_area': [615, 495, 755, 583]
-        }
-    ],
-
-    # --- FASE 5: OUTPUT TRANSMISI TOTAL BARENGAN (UBAH JADI CIRCLE) ---
-    [
-        {
-            'label': '',
-            'shape_type': 'circle',  # Mengubah total CPO menjadi Lingkaran
-            'tank_area': [1106,157,1245,290]
-        },
-        {
-            'label': '',
-            'shape_type': 'circle',  # Mengubah total Palm Kernel menjadi Lingkaran
-            'tank_area': [1116,467,1253,598]
+            'label': 'Kebutuhan BBM',
+            'shape_type': 'rect',
+            'tank_area': [490, 170, 560, 230]  # Silakan kalibrasi koordinat pasnya
         }
     ]
 ]
@@ -188,20 +178,20 @@ while True:
         
         for component in phase:
             area = component['tank_area']
-            # Mengambil nilai shape_type, default-nya ke 'rect' (kotak) jika tidak ditulis
             shape = component.get('shape_type', 'rect')
             
             # 1. Menggambar Bentuk Berdasarkan Tipe Dinamik (Kotak/Lingkaran)
+            # Menggunakan warna merah (Red) agar lebih kontras di diagram
             fig.add_shape(
                 type=shape, 
                 x0=area[0], y0=area[1], x1=area[2], y1=area[3],
-                fillcolor="rgba(0, 255, 0, 0.4)",
-                line=dict(color="LimeGreen", width=3),
+                fillcolor="rgba(255, 0, 0, 0.4)",
+                line=dict(color="Red", width=3),
             )
             
-            # 2. Perhitungan Otomatis Koordinat Label di Bawah Kotak
+            # 2. Perhitungan Otomatis Koordinat Label di Bawah Kotak Indikator
             text_x = (area[0] + area[2]) / 2  # Titik tengah horizontal kotak
-            text_y = area[3] + 20             # Menaruh teks 20 piksel di bawah batas bawah kotak
+            text_y = area[3] + 25             # Menaruh teks 25 piksel di bawah batas bawah kotak
             
             # 3. Menggambar Teks Label Hasil Kalkulasi Dinamis
             fig.add_scatter(
@@ -209,12 +199,12 @@ while True:
                 mode="text",
                 text=[component['label']], 
                 textposition="bottom center",
-                textfont=dict(size=11, color="darkred", family="Arial Black")
+                textfont=dict(size=12, color="DarkRed", family="Arial Black")
             )
         
         fig.update_layout(
             margin=dict(l=0, r=0, t=15, b=0), 
-            height=500,
+            height=600,
             autosize=True,
             showlegend=False
         )
@@ -227,8 +217,8 @@ while True:
                     'displayModeBar': False, 
                     'responsive': True
                 }, 
-                key=f"pks_live_mode_{render_count}"
+                key=f"cld_live_mode_{render_count}"
             )
         
         render_count += 1
-        time.sleep(3.0)
+        time.sleep(3.0)  # Durasi transisi antar fase (3 detik)
