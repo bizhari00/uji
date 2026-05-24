@@ -1,8 +1,4 @@
-Berikut adalah pembaruan kode lengkap (full script) Anda.
 
-Berdasarkan struktur data koordinat yang Anda kirimkan, komponen box_impor_bbm (GAP Ketahanan Energi?) dan box_impor_crude (GAP Ketahanan Pangan?) berada di Kelompok 8 (Fase 8). Logika rendering pada Bagian 6 telah disesuaikan agar mendeteksi kata "GAP" pada label secara otomatis, lalu menggambar geometri penanda khusus berbentuk Belah Ketupat (Diamond) menggunakan parameter type="path" Plotly.
-
-Python
 import streamlit as st
 import plotly.express as px
 from PIL import Image
