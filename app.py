@@ -109,12 +109,12 @@ box_hasil_cpo        = {'label': 'Hasil CPO', 'shape_type': 'rect', 'tank_area':
 box_kebutuhan_bbm    = {'label': 'Kebutuhan BBM', 'shape_type': 'rect', 'tank_area': [833, 110, 942, 175]}
 
 # KELOMPOK 4 (Fase 4)
-box_refinery_cpo     = {'label': 'Produk Samping PFAD', 'shape_type': 'rect', 'tank_area': [1091, 126, 1209, 197]}
+box_refinery_cpo     = {'label': 'Ketersediaan BioSolar Nasional', 'shape_type': 'rect', 'tank_area': [1091, 126, 1209, 197]}
 box_rbdpo            = {'label': 'Refinery CPO', 'shape_type': 'rect', 'tank_area': [837, 567, 930, 626]}
 
 # KELOMPOK 5 (Fase 5)
 box_olein            = {'label': 'RBDPO', 'shape_type': 'rect', 'tank_area': [1047, 555, 1137, 601]}
-box_biosolar         = {'label': 'Ketersediaan BioSolar Nasional', 'shape_type': 'rect', 'tank_area': [870, 409, 1002, 464]}
+box_biosolar         = {'label': 'Produk Samping PFAD', 'shape_type': 'rect', 'tank_area': [870, 409, 1002, 464]}
 
 # KELOMPOK 6 (Fase 6 - Tambahan 2 Kotak Lagi)
 box_prod_biodiesel   = {'label': 'Produksi Biodiesel', 'shape_type': 'rect', 'tank_area': [840, 260, 950, 320]}  # Silakan kalibrasi koordinat pasnya
