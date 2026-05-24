@@ -110,7 +110,7 @@ box_hasil_cpo        = {'label': 'Hasil CPO', 'shape_type': 'rect', 'tank_area':
 box_kebutuhan_bbm    = {'label': 'Kebutuhan BBM', 'shape_type': 'rect', 'tank_area': [833,110,942,175]}
 
 # KELOMPOK 4 (Fase 4 - Tambahan 2 Kotak Lagi)
-box_refinery_cpo     = {'label': 'Refinery CPO', 'shape_type': 'rect', 'tank_area': [1091,126,1209,197]}  # Silakan kalibrasi koordinat pasnya
+box_refinery_cpo     = {'label': 'Kebutuhan BBM Subsidi Solar', 'shape_type': 'rect', 'tank_area': [1091,126,1209,197]}  # Silakan kalibrasi koordinat pasnya
 box_rbdpo            = {'label': 'RBDPO', 'shape_type': 'rect', 'tank_area': [837,567,930,626]}         # Silakan kalibrasi koordinat pasnya
 
 # KELOMPOK 5 (Fase 5 - Tambahan 2 Kotak Lagi)
