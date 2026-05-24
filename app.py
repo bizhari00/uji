@@ -7,7 +7,7 @@ import time
 # 1. KONFIGURASI HALAMAN UTAMA (Wajib Paling Atas)
 # ==============================================================================
 st.set_page_config(
-    page_title="Pabrik PKS - Mode Live",
+    page_title="CLD - Mode Live",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -99,7 +99,7 @@ st.divider()
 # 4. MEMUAT BACKGROUND IMAGE PKS
 # ==============================================================================
 try:
-    img = Image.open("pks.png")
+    img = Image.open("cld11.png")
 except FileNotFoundError:
     st.error("File 'pks.png' tidak ditemukan. Pastikan file gambar ada di root repository GitHub Anda.")
     st.stop()
