@@ -7,7 +7,7 @@ import time
 # 1. KONFIGURASI HALAMAN UTAMA (Wajib Paling Atas)
 # ==============================================================================
 st.set_page_config(
-    page_title="Trisen Syntegra - Mode Live",
+    page_title="Pabrik PKS - Mode Live",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
@@ -39,9 +39,9 @@ st.markdown("<br><br>", unsafe_allow_html=True)
 st.markdown(
     """
     <style>
-    /* 1. Mengatur Ukuran Kotak Tombol Agar Seimbang */
+    /* 1. Mengatur Ukuran & Corak Kotak Tombol Navigasi */
     .stLinkButton > a {
-        background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%) !important;
+        background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%) !important; /* Gradasi biru premium */
         color: #FFFFFF !important;
         border: none !important;
         border-radius: 8px !important; 
@@ -50,12 +50,13 @@ st.markdown(
         transition: all 0.3s ease-in-out !important;
         text-decoration: none !important;
         
+        /* KUNCI KESEIMBANGAN: Lebar otomatis dan tidak melar penuh */
         display: inline-flex !important;
         width: auto !important;
         max-width: 320px !important; 
     }
 
-    /* 2. Menyesuaikan Ukuran Font Tombol */
+    /* 2. Menyesuaikan Ukuran Font di Dalam Tombol */
     .stLinkButton > a p {
         font-size: 16px !important; 
         font-weight: bold !important;
@@ -63,14 +64,14 @@ st.markdown(
         letter-spacing: 0.5px !important;
     }
 
-    /* 3. Efek Hover */
+    /* 3. Efek Hover Interaktif */
     .stLinkButton > a:hover {
         background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%) !important;
         box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4) !important;
         transform: translateY(-1px) !important;
     }
 
-    /* 4. Mengatur Teks Judul Diagram Agar Selaras */
+    /* 4. Mengatur Teks Judul Diagram Agar Selaras Sebaris */
     .custom-title {
         font-size: 20px !important; 
         font-weight: 500 !important;
@@ -83,13 +84,14 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Pembagian kolom rasio agar seimbang dan sejajar lurus secara vertikal
 col_btn, col_title = st.columns([1.2, 2.8])
 
 with col_btn:
-    st.link_button("🏠 Tri-Sen Technology Open Here", "https://forio.com/app/trisen_syntegra/trisen2", use_container_width=False)
+    st.link_button("🏠 ke Menu Simulasi", "https://forio.com/app/bustamiizhari/research-day", use_container_width=False)
 
 with col_title:
-    st.markdown('<p class="custom-title">Maintenance-Operational Cost Diagram</p>', unsafe_allow_html=True)
+    st.markdown('<p class="custom-title">Produksi PKS</p>', unsafe_allow_html=True)
 
 st.divider()
 
@@ -97,47 +99,81 @@ st.divider()
 # 4. MEMUAT BACKGROUND IMAGE PKS
 # ==============================================================================
 try:
-    img = Image.open("qcd1.png") 
+    img = Image.open("pks.png")
 except FileNotFoundError:
-    st.error("File 'qcd1.png' tidak ditemukan. Pastikan file gambar diagram Anda ada di root repository GitHub Anda dan namanya sesuai.")
+    st.error("File 'pks.png' tidak ditemukan. Pastikan file gambar ada di root repository GitHub Anda.")
     st.stop()
 
 # ==============================================================================
-# 5. DATA KOORDINAT XY (Atas Kotak, Bawah Lingkaran/Circle/Kotak Lembut)
+# 5. DATA KOORDINAT XY MURNI (Hasil Kalibrasi Pas)
+#    Format tank_area: [X_Mulai, Y_Mulai, X_Akhir, Y_Akhir]
 # ==============================================================================
 process_phases = [
-    # --- FASE 1: PARAMETER INPUT (ATAS) + KOTAK BAWAH ---
+    # --- FASE 1: PENERIMAAN TBS BARENGAN ---
     [
-        # Koordinat Asli Atas (Bentuk Kotak)
-        {'label': '', 'shape_type': 'rect', 'is_bottom': False, 'tank_area': [152, 40, 268, 94]},
-        {'label': '', 'shape_type': 'rect', 'is_bottom': False, 'tank_area': [74, 155, 203, 231]},
-        {'label': '', 'shape_type': 'rect', 'is_bottom': False, 'tank_area': [720, 232, 851, 293]},
-        {'label': '', 'shape_type': 'rect', 'is_bottom': False, 'tank_area': [872, 18, 996, 83]},
-        # Kotak Bawah (Diberi penanda 'is_bottom': True agar warnanya lembut & tanpa garis)
-        {'label': '', 'shape_type': 'rect', 'is_bottom': True, 'tank_area': [130, 429, 468, 688]} 
+        {
+            'label': '',
+            'tank_area': [177, 121, 313, 210]
+        },
+        {
+            'label': '',
+            'tank_area': [192, 485, 332, 610]
+        }
     ],
     
-    # --- FASE 2: LAJU ALIRAN/FLOWS (ATAS) + KOTAK BAWAH ---
+    # --- FASE 2: STOCK PKS BARENGAN ---
     [
-        # Koordinat Asli Atas (Bentuk Kotak)
-        {'label': '', 'shape_type': 'rect', 'is_bottom': False, 'tank_area': [271, 93, 428, 169]},
-        {'label': '', 'shape_type': 'rect', 'is_bottom': False, 'tank_area': [779, 88, 925, 165]},
-        # Kotak Bawah
-        {'label': '', 'shape_type': 'rect', 'is_bottom': True, 'tank_area': [479, 435, 802, 683]} 
+        {
+            'label': '',
+            'tank_area': [326, 110, 470, 200]
+        },
+        {
+            'label': '',
+            'tank_area': [338, 483, 451, 584]
+        }
     ],
     
-    # --- FASE 3: AKUMULASI STOK/STOCKS (ATAS) + KOTAK BAWAH ---
+    # --- FASE 3: PROSES MASUK KE TANGKI CPO BARENGAN ---
     [
-        # Koordinat Asli Atas (Bentuk Kotak)
-        {'label': '', 'shape_type': 'rect', 'is_bottom': False, 'tank_area': [465, 75, 606, 161]},
-        {'label': '', 'shape_type': 'rect', 'is_bottom': False, 'tank_area': [621, 80, 751, 177]},
-        # Kotak Bawah
-        {'label': '', 'shape_type': 'rect', 'is_bottom': True, 'tank_area': [816, 429, 1181, 690]} 
+        {
+            'label': '',
+            'tank_area': [620, 40, 749, 108]
+        },
+        {
+            'label': '',
+            'tank_area': [605, 405, 745, 490]
+        }
+    ],
+    
+    # --- FASE 4: PROSES MASUK KE STORAGE KERNEL BARENGAN ---
+    [
+        {
+            'label': '',
+            'tank_area': [625, 125, 763, 200]
+        },
+        {
+            'label': '',
+            'tank_area': [615, 495, 755, 583]
+        }
+    ],
+
+    # --- FASE 5: OUTPUT TRANSMISI TOTAL BARENGAN (UBAH JADI CIRCLE) ---
+    [
+        {
+            'label': '',
+            'shape_type': 'circle',  # Mengubah total CPO menjadi Lingkaran
+            'tank_area': [1106,157,1245,290]
+        },
+        {
+            'label': '',
+            'shape_type': 'circle',  # Mengubah total Palm Kernel menjadi Lingkaran
+            'tank_area': [1116,467,1253,598]
+        }
     ]
 ]
 
 # ==============================================================================
-# 6. RENDERING LOGIC
+# 6. LOOPING RENDERING (MODE NORMAL - GRID OFF)
 # ==============================================================================
 placeholder = st.empty()
 render_count = 0
@@ -146,41 +182,28 @@ while True:
     for phase in process_phases:
         fig = px.imshow(img)
         
-        # Sembunyikan Grid Aksis total agar diagram estetik dan bersih
+        # --- MODE NORMAL: Menonaktifkan Grid dan Sumbu Koordinat ---
         fig.update_xaxes(visible=False, showgrid=False)
         fig.update_yaxes(visible=False, showgrid=False)
         
-        # Gambar ulang kotak animasi di tiap fase
         for component in phase:
             area = component['tank_area']
+            # Mengambil nilai shape_type, default-nya ke 'rect' (kotak) jika tidak ditulis
             shape = component.get('shape_type', 'rect')
-            is_bottom = component.get('is_bottom', False)
             
-            # PENGATURAN WARNA BARU DI SINI:
-            if is_bottom:
-                # Kotak bawah: tanpa garis tepi (width=0) & warna hijau pastel yang sangat lembut (alpha 0.15)
-                border_color = "rgba(0,0,0,0)"
-                border_width = 0
-                fill_color = "rgba(144, 238, 144, 0.15)" 
-            else:
-                # Kotak atas tetap mempertahankan warna hijau asli Anda
-                border_color = "LimeGreen" 
-                border_width = 3
-                fill_color = "rgba(0, 255, 0, 0.35)"
-            
-            # Menggambar Bentuk Sorotan Dinamis
+            # 1. Menggambar Bentuk Berdasarkan Tipe Dinamik (Kotak/Lingkaran)
             fig.add_shape(
                 type=shape, 
                 x0=area[0], y0=area[1], x1=area[2], y1=area[3],
-                fillcolor=fill_color,
-                line=dict(color=border_color, width=border_width),
+                fillcolor="rgba(0, 255, 0, 0.4)",
+                line=dict(color="LimeGreen", width=3),
             )
             
-            # Koordinat Label Dinamis
-            text_x = (area[0] + area[2]) / 2
-            text_y = area[3] + 20
+            # 2. Perhitungan Otomatis Koordinat Label di Bawah Kotak
+            text_x = (area[0] + area[2]) / 2  # Titik tengah horizontal kotak
+            text_y = area[3] + 20             # Menaruh teks 20 piksel di bawah batas bawah kotak
             
-            # Tempel Label Teks
+            # 3. Menggambar Teks Label Hasil Kalkulasi Dinamis
             fig.add_scatter(
                 x=[text_x], y=[text_y], 
                 mode="text",
@@ -191,7 +214,7 @@ while True:
         
         fig.update_layout(
             margin=dict(l=0, r=0, t=15, b=0), 
-            height=720, 
+            height=500,
             autosize=True,
             showlegend=False
         )
