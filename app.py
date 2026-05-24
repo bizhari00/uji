@@ -99,7 +99,7 @@ st.divider()
 # 4. MEMUAT BACKGROUND IMAGE PKS
 # ==============================================================================
 try:
-    img = Image.open("cld11.png")
+    img = Image.open("cldnew.png")
 except FileNotFoundError:
     st.error("File 'pks.png' tidak ditemukan. Pastikan file gambar ada di root repository GitHub Anda.")
     st.stop()
