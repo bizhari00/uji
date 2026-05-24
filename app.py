@@ -88,7 +88,7 @@ st.markdown(
 col_btn, col_title = st.columns([1.2, 2.8])
 
 with col_btn:
-    st.link_button("🏠 ke Menu Simulasi", "https://forio.com/app/univ_sumaterautara/research-ptpn", use_container_width=False)
+    st.link_button("🏠 ke Menu Utama", "https://forio.com/app/univ_sumaterautara/research-ptpn", use_container_width=False)
 
 with col_title:
     st.markdown('<p class="custom-title">CLD</p>', unsafe_allow_html=True)
