@@ -1,6 +1,4 @@
-Berikut adalah pembaruan kode lengkap (full script). Saya telah mengubah warna penanda (fillcolor) menjadi warna merah pastel yang lembut (rgba(239, 68, 68, 0.4)) dan menghilangkan garis tepi (border) dengan mengatur properti width=0 pada parameter line di setiap bentuk (shape), baik untuk kotak biasa maupun belah ketupat.
 
-Python
 import streamlit as st
 import plotly.express as px
 from PIL import Image
