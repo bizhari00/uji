@@ -1,3 +1,8 @@
+Berikut adalah pembaruan full script yang telah ditambahkan Fase 4 (2 kotak lagi) dan Fase 5 (2 kotak lagi) secara akumulatif.
+
+Untuk Fase 4 dan Fase 5, saya menambahkan komponen hilir baru dari diagram Anda seperti Refinery CPO, RBDPO, Olein (Minyak Goreng), dan Ketersediaan BioSolar Nasional sebagai placeholder koordinat. Silakan kalibrasi nilai tank_area-nya agar pas menimpa posisi teks pada gambar cldnew.png Anda.
+
+Python
 import streamlit as st
 import plotly.express as px
 from PIL import Image
@@ -79,7 +84,7 @@ col_btn, col_title = st.columns([1.2, 2.8])
 with col_btn:
     st.link_button("🏠 ke Menu Utama", "https://forio.com/app/univ_sumaterautara/research-ptpn", use_container_width=False)
 with col_title:
-    st.markdown('<p class="custom-title">Model Analisis Ketahanan Energi & Pangan (Live Animasi Akumulatif)</p>', unsafe_allow_html=True)
+    st.markdown('<p class="custom-title">Model Analisis Ketahanan Energi & Pangan (Live Animasi Akumulatif Lengkap)</p>', unsafe_allow_html=True)
 
 st.divider()
 
@@ -95,32 +100,51 @@ except FileNotFoundError:
 # ==============================================================================
 # 5. DATA KOORDINAT KOTAK INDIVIDUAL
 # ==============================================================================
-# Kita definisikan koordinat per komponen terlebih dahulu agar mudah dikelompokkan
+# KELOMPOK 1 (Fase 1)
 box_kapasitas_kilang = {'label': 'Kapasitas Kilang', 'shape_type': 'rect', 'tank_area': [240, 120, 310, 180]}
 box_lahan_sawit_tm   = {'label': 'Lahan Sawit Produktif TM', 'shape_type': 'rect', 'tank_area': [80, 640, 160, 720]}
 
+# KELOMPOK 2 (Fase 2)
 box_produksi_bbm     = {'label': 'Produksi BBM', 'shape_type': 'rect', 'tank_area': [370, 110, 440, 170]}
 box_pks              = {'label': 'Pabrik Kelapa Sawit PKS', 'shape_type': 'rect', 'tank_area': [240, 760, 310, 830]}
 
+# KELOMPOK 3 (Fase 3)
 box_palm_kernel      = {'label': 'Palm Kernel', 'shape_type': 'rect', 'tank_area': [250, 610, 320, 670]}
 box_hasil_cpo        = {'label': 'Hasil CPO', 'shape_type': 'rect', 'tank_area': [490, 750, 560, 810]}
 box_kebutuhan_bbm    = {'label': 'Kebutuhan BBM', 'shape_type': 'rect', 'tank_area': [490, 170, 560, 230]}
 
-box_produksi_bbm     = {'label': 'Produksi BBM', 'shape_type': 'rect', 'tank_area': [370, 110, 440, 170]}
-box_pks              = {'label': 'Pabrik Kelapa Sawit PKS', 'shape_type': 'rect', 'tank_area': [240, 760, 310, 830]}
+# KELOMPOK 4 (Fase 4 - Tambahan 2 Kotak Lagi)
+box_refinery_cpo     = {'label': 'Refinery CPO', 'shape_type': 'rect', 'tank_area': [600, 750, 680, 810]}  # Silakan kalibrasi koordinat pasnya
+box_rbdpo            = {'label': 'RBDPO', 'shape_type': 'rect', 'tank_area': [720, 750, 790, 810]}         # Silakan kalibrasi koordinat pasnya
+
+# KELOMPOK 5 (Fase 5 - Tambahan 2 Kotak Lagi)
+box_olein            = {'label': 'Olein (Minyak Goreng)', 'shape_type': 'rect', 'tank_area': [840, 700, 920, 760]}  # Silakan kalibrasi koordinat pasnya
+box_biosolar         = {'label': 'Ketersediaan BioSolar Nasional', 'shape_type': 'rect', 'tank_area': [840, 400, 950, 460]} # Silakan kalibrasi koordinat pasnya
 
 # ==============================================================================
-# 5B. STRUKTUR FASE ANIMASI AKUMULATIF (Kotak Sebelumnya Tidak Hilang)
+# 5B. STRUKTUR FASE ANIMASI AKUMULATIF (Kotak Sebelumnya Tetap Bertahan)
 # ==============================================================================
 process_phases = [
     # FASE 1: Muncul 2 Kotak Awal
     [box_kapasitas_kilang, box_lahan_sawit_tm],
     
-    # FASE 2: Kotak Fase 1 Tetap Ada + Muncul 2 Kotak Baru
+    # FASE 2: + 2 Kotak Baru
     [box_kapasitas_kilang, box_lahan_sawit_tm, box_produksi_bbm, box_pks],
     
-    # FASE 3: Semua Kotak Fase 1 & 2 Tetap Ada + Muncul 3 Kotak Baru
-    [box_kapasitas_kilang, box_lahan_sawit_tm, box_produksi_bbm, box_pks, box_palm_kernel, box_hasil_cpo, box_kebutuhan_bbm]
+    # FASE 3: + 3 Kotak Baru
+    [box_kapasitas_kilang, box_lahan_sawit_tm, box_produksi_bbm, box_pks, 
+     box_palm_kernel, box_hasil_cpo, box_kebutuhan_bbm],
+    
+    # FASE 4: + 2 Kotak Lagi (Refinery & RBDPO)
+    [box_kapasitas_kilang, box_lahan_sawit_tm, box_produksi_bbm, box_pks, 
+     box_palm_kernel, box_hasil_cpo, box_kebutuhan_bbm, 
+     box_refinery_cpo, box_rbdpo],
+     
+    # FASE 5: + 2 Kotak Lagi (Olein & BioSolar)
+    [box_kapasitas_kilang, box_lahan_sawit_tm, box_produksi_bbm, box_pks, 
+     box_palm_kernel, box_hasil_cpo, box_kebutuhan_bbm, 
+     box_refinery_cpo, box_rbdpo, 
+     box_olein, box_biosolar]
 ]
 
 # ==============================================================================
@@ -181,4 +205,4 @@ while True:
             )
         
         render_count += 1
-        time.sleep(3.5)  # Jeda 3.5 detik untuk melihat perkembangan alur diagram
+        time.sleep(3.5)  # Jeda waktu transisi antar fase animasi
