@@ -180,7 +180,7 @@ process_phases = [
 ]
 
 # ==============================================================================
-# 6. LOOPING RENDERING (DENGAN WARNA LEMBUT TANPA BORDER)
+# 6. LOOPING RENDERING (WARNA LEMBUT, TANPA BORDER & TANPA LABEL LABEL TEKS)
 # ==============================================================================
 placeholder = st.empty()
 render_count = 0
@@ -216,19 +216,6 @@ while True:
                     fillcolor="rgba(239, 68, 68, 0.4)",  # Merah pastel lembut
                     line=dict(width=0),                  # Tanpa border
                 )
-            
-            # 2. Koordinat Label Teks Dinamis
-            text_x = (area[0] + area[2]) / 2
-            text_y = area[3] + 25             
-            
-            # 3. Render Teks Label di Bawah Elemen Penanda
-            fig.add_scatter(
-                x=[text_x], y=[text_y], 
-                mode="text",
-                text=[component['label']], 
-                textposition="bottom center",
-                textfont=dict(size=12, color="DarkRed", family="Arial Black")
-            )
         
         fig.update_layout(
             margin=dict(l=0, r=0, t=15, b=0), 
