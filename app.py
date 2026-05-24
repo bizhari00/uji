@@ -1,4 +1,6 @@
+Berikut adalah pembaruan kode lengkap (full script). Saya telah mengubah warna penanda (fillcolor) menjadi warna merah pastel yang lembut (rgba(239, 68, 68, 0.4)) dan menghilangkan garis tepi (border) dengan mengatur properti width=0 pada parameter line di setiap bentuk (shape), baik untuk kotak biasa maupun belah ketupat.
 
+Python
 import streamlit as st
 import plotly.express as px
 from PIL import Image
@@ -126,8 +128,8 @@ box_avail_migor      = {'label': 'Ketersediaan BioSolar Nasional', 'shape_type':
 box_gap_pangan       = {'label': 'Ketersediaan Minyak Goreng Nasional ', 'shape_type': 'rect', 'tank_area': [1485, 492, 1610, 579]}
 
 # KELOMPOK 8 (Fase 8 - Kotak Indikator GAP Deteksi Otomatis Menjadi Belah Ketupat)
-box_impor_bbm        = {'label': 'GAP Ketahanan Energi?', 'shape_type': 'rect', 'tank_area': [1399,81,1502,183]}
-box_impor_crude      = {'label': 'GAP Ketahanan Pangan?', 'shape_type': 'rect', 'tank_area': [1582,323,1677,417]}
+box_impor_bbm        = {'label': 'GAP Ketahanan Energi?', 'shape_type': 'rect', 'tank_area': [1399, 81, 1502, 183]}
+box_impor_crude      = {'label': 'GAP Ketahanan Pangan?', 'shape_type': 'rect', 'tank_area': [1582, 323, 1677, 417]}
 
 # ==============================================================================
 # 5B. STRUKTUR FASE ANIMASI AKUMULATIF (Kotak Sebelumnya Tetap Bertahan)
@@ -180,7 +182,7 @@ process_phases = [
 ]
 
 # ==============================================================================
-# 6. LOOPING RENDERING (DENGAN GEOMETRI BELAH KETUPAT)
+# 6. LOOPING RENDERING (DENGAN WARNA LEMBUT TANPA BORDER)
 # ==============================================================================
 placeholder = st.empty()
 render_count = 0
@@ -203,10 +205,9 @@ while True:
                 
                 fig.add_shape(
                     type="path",
-                    # Alur Garis: Atas -> Kanan -> Bawah -> Kiri -> Selesai (Z)
                     path=f"M {x_mid},{area[1]} L {area[2]},{y_mid} L {x_mid},{area[3]} L {area[0]},{y_mid} Z",
-                    fillcolor="rgba(255, 0, 0, 0.35)",
-                    line=dict(color="Red", width=3),
+                    fillcolor="rgba(239, 68, 68, 0.4)",  # Merah pastel lembut
+                    line=dict(width=0),                  # Tanpa border
                 )
             else:
                 # Bentuk Kotak Standar untuk komponen non-GAP
@@ -214,8 +215,8 @@ while True:
                 fig.add_shape(
                     type=shape, 
                     x0=area[0], y0=area[1], x1=area[2], y1=area[3],
-                    fillcolor="rgba(255, 0, 0, 0.35)",
-                    line=dict(color="Red", width=3),
+                    fillcolor="rgba(239, 68, 68, 0.4)",  # Merah pastel lembut
+                    line=dict(width=0),                  # Tanpa border
                 )
             
             # 2. Koordinat Label Teks Dinamis
