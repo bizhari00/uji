@@ -1,8 +1,4 @@
-Berikut adalah full script lengkap yang sudah diintegrasikan dengan alur 3 fase animasi baru sesuai permintaan Anda.
 
-Warna indikator animasi diubah menjadi warna merah semi-transparan (rgba(255, 0, 0, 0.4)) dengan garis tepi merah tegas agar kontras dan terlihat jelas saat menimpa diagram alir. Silakan sesuaikan nilai koordinat tank_area [X_Mulai, Y_Mulai, X_Akhir, Y_Akhir] jika dirasa posisi kotaknya kurang bergeser tepat di atas teks gambar cldnew.png.
-
-Python
 import streamlit as st
 import plotly.express as px
 from PIL import Image
