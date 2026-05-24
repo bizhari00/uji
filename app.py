@@ -97,25 +97,25 @@ except FileNotFoundError:
 # 5. DATA KOORDINAT KOTAK INDIVIDUAL
 # ==============================================================================
 # KELOMPOK 1 (Fase 1)
-box_kapasitas_kilang = {'label': 'Kapasitas Kilang', 'shape_type': 'rect', 'tank_area': [240, 120, 310, 180]}
-box_lahan_sawit_tm   = {'label': 'Lahan Sawit Produktif TM', 'shape_type': 'rect', 'tank_area': [80, 640, 160, 720]}
+box_kapasitas_kilang = {'label': 'Kapasitas Kilang', 'shape_type': 'rect', 'tank_area': [363,137,466,208]}
+box_lahan_sawit_tm   = {'label': 'Lahan Sawit Produktif TM', 'shape_type': 'rect', 'tank_area': [121,433,231,511]}
 
 # KELOMPOK 2 (Fase 2)
-box_produksi_bbm     = {'label': 'Produksi BBM', 'shape_type': 'rect', 'tank_area': [370, 110, 440, 170]}
-box_pks              = {'label': 'Pabrik Kelapa Sawit PKS', 'shape_type': 'rect', 'tank_area': [240, 760, 310, 830]}
+box_produksi_bbm     = {'label': 'Produksi BBM', 'shape_type': 'rect', 'tank_area': [631,84,723,143]}
+box_pks              = {'label': 'Pabrik Kelapa Sawit PKS', 'shape_type': 'rect', 'tank_area': [396,548,518,625]}
 
 # KELOMPOK 3 (Fase 3)
-box_palm_kernel      = {'label': 'Palm Kernel', 'shape_type': 'rect', 'tank_area': [250, 610, 320, 670]}
-box_hasil_cpo        = {'label': 'Hasil CPO', 'shape_type': 'rect', 'tank_area': [490, 750, 560, 810]}
-box_kebutuhan_bbm    = {'label': 'Kebutuhan BBM', 'shape_type': 'rect', 'tank_area': [490, 170, 560, 230]}
+box_palm_kernel      = {'label': 'Palm Kernel', 'shape_type': 'rect', 'tank_area': [357,412,468,454]}
+box_hasil_cpo        = {'label': 'Hasil CPO', 'shape_type': 'rect', 'tank_area': [664,515,760,560]}
+box_kebutuhan_bbm    = {'label': 'Kebutuhan BBM', 'shape_type': 'rect', 'tank_area': [833,110,942,175]}
 
 # KELOMPOK 4 (Fase 4 - Tambahan 2 Kotak Lagi)
-box_refinery_cpo     = {'label': 'Refinery CPO', 'shape_type': 'rect', 'tank_area': [600, 750, 680, 810]}  # Silakan kalibrasi koordinat pasnya
-box_rbdpo            = {'label': 'RBDPO', 'shape_type': 'rect', 'tank_area': [720, 750, 790, 810]}         # Silakan kalibrasi koordinat pasnya
+box_refinery_cpo     = {'label': 'Refinery CPO', 'shape_type': 'rect', 'tank_area': [1091,126,1209,197]}  # Silakan kalibrasi koordinat pasnya
+box_rbdpo            = {'label': 'RBDPO', 'shape_type': 'rect', 'tank_area': [837,567,930,626]}         # Silakan kalibrasi koordinat pasnya
 
 # KELOMPOK 5 (Fase 5 - Tambahan 2 Kotak Lagi)
-box_olein            = {'label': 'Olein (Minyak Goreng)', 'shape_type': 'rect', 'tank_area': [840, 700, 920, 760]}  # Silakan kalibrasi koordinat pasnya
-box_biosolar         = {'label': 'Ketersediaan BioSolar Nasional', 'shape_type': 'rect', 'tank_area': [840, 400, 950, 460]} # Silakan kalibrasi koordinat pasnya
+box_olein            = {'label': 'Olein (Minyak Goreng)', 'shape_type': 'rect', 'tank_area': [1047,555,1137,601]}  # Silakan kalibrasi koordinat pasnya
+box_biosolar         = {'label': 'Ketersediaan BioSolar Nasional', 'shape_type': 'rect', 'tank_area': [870,409,1002,464]} # Silakan kalibrasi koordinat pasnya
 
 # ==============================================================================
 # 5B. STRUKTUR FASE ANIMASI AKUMULATIF (Kotak Sebelumnya Tetap Bertahan)
