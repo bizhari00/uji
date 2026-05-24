@@ -1,4 +1,3 @@
-
 import streamlit as st
 import plotly.express as px
 from PIL import Image
@@ -97,25 +96,37 @@ except FileNotFoundError:
 # 5. DATA KOORDINAT KOTAK INDIVIDUAL
 # ==============================================================================
 # KELOMPOK 1 (Fase 1)
-box_kapasitas_kilang = {'label': 'Kapasitas Kilang', 'shape_type': 'rect', 'tank_area': [363,137,466,208]}
-box_lahan_sawit_tm   = {'label': 'Lahan Sawit Produktif TM', 'shape_type': 'rect', 'tank_area': [121,433,231,511]}
+box_kapasitas_kilang = {'label': 'Kapasitas Kilang', 'shape_type': 'rect', 'tank_area': [363, 137, 466, 208]}
+box_lahan_sawit_tm   = {'label': 'Lahan Sawit Produktif TM', 'shape_type': 'rect', 'tank_area': [121, 433, 231, 511]}
 
 # KELOMPOK 2 (Fase 2)
-box_produksi_bbm     = {'label': 'Produksi BBM', 'shape_type': 'rect', 'tank_area': [631,84,723,143]}
-box_pks              = {'label': 'Pabrik Kelapa Sawit PKS', 'shape_type': 'rect', 'tank_area': [396,548,518,625]}
+box_produksi_bbm     = {'label': 'Produksi BBM', 'shape_type': 'rect', 'tank_area': [631, 84, 723, 143]}
+box_pks              = {'label': 'Pabrik Kelapa Sawit PKS', 'shape_type': 'rect', 'tank_area': [396, 548, 518, 625]}
 
 # KELOMPOK 3 (Fase 3)
-box_palm_kernel      = {'label': 'Palm Kernel', 'shape_type': 'rect', 'tank_area': [357,412,468,454]}
-box_hasil_cpo        = {'label': 'Hasil CPO', 'shape_type': 'rect', 'tank_area': [664,515,760,560]}
-box_kebutuhan_bbm    = {'label': 'Kebutuhan BBM', 'shape_type': 'rect', 'tank_area': [833,110,942,175]}
+box_palm_kernel      = {'label': 'Palm Kernel', 'shape_type': 'rect', 'tank_area': [357, 412, 468, 454]}
+box_hasil_cpo        = {'label': 'Hasil CPO', 'shape_type': 'rect', 'tank_area': [664, 515, 760, 560]}
+box_kebutuhan_bbm    = {'label': 'Kebutuhan BBM', 'shape_type': 'rect', 'tank_area': [833, 110, 942, 175]}
 
-# KELOMPOK 4 (Fase 4 - Tambahan 2 Kotak Lagi)
-box_refinery_cpo     = {'label': 'Kebutuhan BBM Subsidi Solar', 'shape_type': 'rect', 'tank_area': [1091,126,1209,197]}  # Silakan kalibrasi koordinat pasnya
-box_rbdpo            = {'label': 'RBDPO', 'shape_type': 'rect', 'tank_area': [837,567,930,626]}         # Silakan kalibrasi koordinat pasnya
+# KELOMPOK 4 (Fase 4)
+box_refinery_cpo     = {'label': 'Kebutuhan BBM Subsidi Solar', 'shape_type': 'rect', 'tank_area': [1091, 126, 1209, 197]}
+box_rbdpo            = {'label': 'RBDPO', 'shape_type': 'rect', 'tank_area': [837, 567, 930, 626]}
 
-# KELOMPOK 5 (Fase 5 - Tambahan 2 Kotak Lagi)
-box_olein            = {'label': 'Olein (Minyak Goreng)', 'shape_type': 'rect', 'tank_area': [1047,555,1137,601]}  # Silakan kalibrasi koordinat pasnya
-box_biosolar         = {'label': 'Ketersediaan BioSolar Nasional', 'shape_type': 'rect', 'tank_area': [870,409,1002,464]} # Silakan kalibrasi koordinat pasnya
+# KELOMPOK 5 (Fase 5)
+box_olein            = {'label': 'Olein (Minyak Goreng)', 'shape_type': 'rect', 'tank_area': [1047, 555, 1137, 601]}
+box_biosolar         = {'label': 'Ketersediaan BioSolar Nasional', 'shape_type': 'rect', 'tank_area': [870, 409, 1002, 464]}
+
+# KELOMPOK 6 (Fase 6 - Tambahan 2 Kotak Lagi)
+box_prod_biodiesel   = {'label': 'Produksi Biodiesel', 'shape_type': 'rect', 'tank_area': [840, 260, 950, 320]}  # Silakan kalibrasi koordinat pasnya
+box_gap_energi       = {'label': 'GAP Ketahanan Energi?', 'shape_type': 'rect', 'tank_area': [1120, 260, 1240, 320]} # Silakan kalibrasi koordinat pasnya
+
+# KELOMPOK 7 (Fase 7 - Tambahan 2 Kotak Lagi)
+box_avail_migor      = {'label': 'Ketersediaan Minyak Goreng', 'shape_type': 'rect', 'tank_area': [1030, 670, 1160, 720]} # Silakan kalibrasi koordinat pasnya
+box_gap_pangan       = {'label': 'GAP Ketahanan Pangan?', 'shape_type': 'rect', 'tank_area': [1120, 780, 1240, 840]}  # Silakan kalibrasi koordinat pasnya
+
+# KELOMPOK 8 (Fase 8 - Tambahan 2 Kotak Akhir)
+box_impor_bbm        = {'label': 'Impor BBM', 'shape_type': 'rect', 'tank_area': [630, 200, 720, 260]}       # Silakan kalibrasi koordinat pasnya
+box_impor_crude      = {'label': 'Impor Minyak Mentah', 'shape_type': 'rect', 'tank_area': [360, 10, 460, 60]} # Silakan kalibrasi koordinat pasnya
 
 # ==============================================================================
 # 5B. STRUKTUR FASE ANIMASI AKUMULATIF (Kotak Sebelumnya Tetap Bertahan)
@@ -131,7 +142,7 @@ process_phases = [
     [box_kapasitas_kilang, box_lahan_sawit_tm, box_produksi_bbm, box_pks, 
      box_palm_kernel, box_hasil_cpo, box_kebutuhan_bbm],
     
-    # FASE 4: + 2 Kotak Lagi (Refinery & RBDPO)
+    # FASE 4: + 2 Kotak Lagi (Subsidi Solar & RBDPO)
     [box_kapasitas_kilang, box_lahan_sawit_tm, box_produksi_bbm, box_pks, 
      box_palm_kernel, box_hasil_cpo, box_kebutuhan_bbm, 
      box_refinery_cpo, box_rbdpo],
@@ -140,7 +151,31 @@ process_phases = [
     [box_kapasitas_kilang, box_lahan_sawit_tm, box_produksi_bbm, box_pks, 
      box_palm_kernel, box_hasil_cpo, box_kebutuhan_bbm, 
      box_refinery_cpo, box_rbdpo, 
-     box_olein, box_biosolar]
+     box_olein, box_biosolar],
+
+    # FASE 6: + 2 Kotak Lagi (Produksi Biodiesel & GAP Energi)
+    [box_kapasitas_kilang, box_lahan_sawit_tm, box_produksi_bbm, box_pks, 
+     box_palm_kernel, box_hasil_cpo, box_kebutuhan_bbm, 
+     box_refinery_cpo, box_rbdpo, 
+     box_olein, box_biosolar,
+     box_prod_biodiesel, box_gap_energi],
+
+    # FASE 7: + 2 Kotak Lagi (Ketersediaan Migor & GAP Pangan)
+    [box_kapasitas_kilang, box_lahan_sawit_tm, box_produksi_bbm, box_pks, 
+     box_palm_kernel, box_hasil_cpo, box_kebutuhan_bbm, 
+     box_refinery_cpo, box_rbdpo, 
+     box_olein, box_biosolar,
+     box_prod_biodiesel, box_gap_energi,
+     box_avail_migor, box_gap_pangan],
+
+    # FASE 8: + 2 Kotak Akhir (Impor BBM & Impor Crude)
+    [box_kapasitas_kilang, box_lahan_sawit_tm, box_produksi_bbm, box_pks, 
+     box_palm_kernel, box_hasil_cpo, box_kebutuhan_bbm, 
+     box_refinery_cpo, box_rbdpo, 
+     box_olein, box_biosolar,
+     box_prod_biodiesel, box_gap_energi,
+     box_avail_migor, box_gap_pangan,
+     box_impor_bbm, box_impor_crude]
 ]
 
 # ==============================================================================
