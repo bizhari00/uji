@@ -125,8 +125,8 @@ box_avail_migor      = {'label': 'Ketersediaan BioSolar Nasional', 'shape_type':
 box_gap_pangan       = {'label': 'Ketersediaan Minyak Goreng Nasional ', 'shape_type': 'rect', 'tank_area': [1485,492,1610,579]}  # Silakan kalibrasi koordinat pasnya
 
 # KELOMPOK 8 (Fase 8 - Tambahan 2 Kotak Akhir)
-box_impor_bbm        = {'label': 'Impor BBM', 'shape_type': 'rect', 'tank_area': [1381,76,1510,193]}       # Silakan kalibrasi koordinat pasnya
-box_impor_crude      = {'label': 'Impor Minyak Mentah', 'shape_type': 'rect', 'tank_area': [1569,317,1686,424]} # Silakan kalibrasi koordinat pasnya
+box_impor_bbm        = {'label': 'GAP Ketahanan Energi?', 'shape_type': 'rect', 'tank_area': [1381,76,1510,193]}       # Silakan kalibrasi koordinat pasnya
+box_impor_crude      = {'label': 'GAP Ketahanan Pangan?', 'shape_type': 'rect', 'tank_area': [1569,317,1686,424]} # Silakan kalibrasi koordinat pasnya
 
 # ==============================================================================
 # 5B. STRUKTUR FASE ANIMASI AKUMULATIF (Kotak Sebelumnya Tetap Bertahan)
