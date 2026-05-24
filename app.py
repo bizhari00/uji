@@ -106,6 +106,9 @@ box_palm_kernel      = {'label': 'Palm Kernel', 'shape_type': 'rect', 'tank_area
 box_hasil_cpo        = {'label': 'Hasil CPO', 'shape_type': 'rect', 'tank_area': [490, 750, 560, 810]}
 box_kebutuhan_bbm    = {'label': 'Kebutuhan BBM', 'shape_type': 'rect', 'tank_area': [490, 170, 560, 230]}
 
+box_produksi_bbm     = {'label': 'Produksi BBM', 'shape_type': 'rect', 'tank_area': [370, 110, 440, 170]}
+box_pks              = {'label': 'Pabrik Kelapa Sawit PKS', 'shape_type': 'rect', 'tank_area': [240, 760, 310, 830]}
+
 # ==============================================================================
 # 5B. STRUKTUR FASE ANIMASI AKUMULATIF (Kotak Sebelumnya Tidak Hilang)
 # ==============================================================================
