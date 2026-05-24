@@ -1,8 +1,4 @@
-Berikut adalah pembaruan full script yang telah ditambahkan Fase 4 (2 kotak lagi) dan Fase 5 (2 kotak lagi) secara akumulatif.
 
-Untuk Fase 4 dan Fase 5, saya menambahkan komponen hilir baru dari diagram Anda seperti Refinery CPO, RBDPO, Olein (Minyak Goreng), dan Ketersediaan BioSolar Nasional sebagai placeholder koordinat. Silakan kalibrasi nilai tank_area-nya agar pas menimpa posisi teks pada gambar cldnew.png Anda.
-
-Python
 import streamlit as st
 import plotly.express as px
 from PIL import Image
