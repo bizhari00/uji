@@ -126,8 +126,8 @@ box_avail_migor      = {'label': 'Ketersediaan BioSolar Nasional', 'shape_type':
 box_gap_pangan       = {'label': 'Ketersediaan Minyak Goreng Nasional ', 'shape_type': 'rect', 'tank_area': [1485, 492, 1610, 579]}
 
 # KELOMPOK 8 (Fase 8 - Kotak Indikator GAP Deteksi Otomatis Menjadi Belah Ketupat)
-box_impor_bbm        = {'label': 'GAP Ketahanan Energi?', 'shape_type': 'rect', 'tank_area': [1381, 76, 1510, 193]}
-box_impor_crude      = {'label': 'GAP Ketahanan Pangan?', 'shape_type': 'rect', 'tank_area': [1569, 317, 1686, 424]}
+box_impor_bbm        = {'label': 'GAP Ketahanan Energi?', 'shape_type': 'rect', 'tank_area': [1399,81,1502,183]}
+box_impor_crude      = {'label': 'GAP Ketahanan Pangan?', 'shape_type': 'rect', 'tank_area': [1582,323,1677,417]}
 
 # ==============================================================================
 # 5B. STRUKTUR FASE ANIMASI AKUMULATIF (Kotak Sebelumnya Tetap Bertahan)
