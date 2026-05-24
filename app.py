@@ -117,16 +117,16 @@ box_olein            = {'label': 'RBDPO', 'shape_type': 'rect', 'tank_area': [10
 box_biosolar         = {'label': 'Produk Samping PFAD', 'shape_type': 'rect', 'tank_area': [870, 409, 1002, 464]}
 
 # KELOMPOK 6 (Fase 6 - Tambahan 2 Kotak Lagi)
-box_prod_biodiesel   = {'label': 'Produksi Biodiesel', 'shape_type': 'rect', 'tank_area': [840, 260, 950, 320]}  # Silakan kalibrasi koordinat pasnya
-box_gap_energi       = {'label': 'GAP Ketahanan Energi?', 'shape_type': 'rect', 'tank_area': [1120, 260, 1240, 320]} # Silakan kalibrasi koordinat pasnya
+box_prod_biodiesel   = {'label': 'Produksi Biodiesel', 'shape_type': 'rect', 'tank_area': [1124,390,1208,451]}  # Silakan kalibrasi koordinat pasnya
+box_gap_energi       = {'label': 'Olein (Minyak Goreng)', 'shape_type': 'rect', 'tank_area': [1264,493,1396,553]} # Silakan kalibrasi koordinat pasnya
 
 # KELOMPOK 7 (Fase 7 - Tambahan 2 Kotak Lagi)
-box_avail_migor      = {'label': 'Ketersediaan Minyak Goreng', 'shape_type': 'rect', 'tank_area': [1030, 670, 1160, 720]} # Silakan kalibrasi koordinat pasnya
-box_gap_pangan       = {'label': 'GAP Ketahanan Pangan?', 'shape_type': 'rect', 'tank_area': [1120, 780, 1240, 840]}  # Silakan kalibrasi koordinat pasnya
+box_avail_migor      = {'label': 'Ketersediaan BioSolar Nasional', 'shape_type': 'rect', 'tank_area': [1228,251,1396,310]} # Silakan kalibrasi koordinat pasnya
+box_gap_pangan       = {'label': 'Ketersediaan Minyak Goreng Nasional ', 'shape_type': 'rect', 'tank_area': [1485,492,1610,579]}  # Silakan kalibrasi koordinat pasnya
 
 # KELOMPOK 8 (Fase 8 - Tambahan 2 Kotak Akhir)
-box_impor_bbm        = {'label': 'Impor BBM', 'shape_type': 'rect', 'tank_area': [630, 200, 720, 260]}       # Silakan kalibrasi koordinat pasnya
-box_impor_crude      = {'label': 'Impor Minyak Mentah', 'shape_type': 'rect', 'tank_area': [360, 10, 460, 60]} # Silakan kalibrasi koordinat pasnya
+box_impor_bbm        = {'label': 'Impor BBM', 'shape_type': 'rect', 'tank_area': [1381,76,1510,193]}       # Silakan kalibrasi koordinat pasnya
+box_impor_crude      = {'label': 'Impor Minyak Mentah', 'shape_type': 'rect', 'tank_area': [1569,317,1686,424]} # Silakan kalibrasi koordinat pasnya
 
 # ==============================================================================
 # 5B. STRUKTUR FASE ANIMASI AKUMULATIF (Kotak Sebelumnya Tetap Bertahan)
